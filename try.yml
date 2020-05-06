@@ -1,0 +1,13 @@
+---
+    - hosts: local
+      tasks:
+        -  name: Inspect image
+           docker_image_facts:
+             name: 
+               - nginx 
+               - nodeapp
+           register: result
+        -  name: Make sure both image exist
+           assert: 
+             that:
+               - result.images | length == 2

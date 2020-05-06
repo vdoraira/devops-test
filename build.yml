@@ -1,0 +1,46 @@
+---
+    - hosts: local
+      tasks:
+        -  name: Inspect image
+           docker_image_facts:
+             name: 
+               - nginx 
+               - nodeapp
+           register: result
+        -  name: Make sure both image exist
+           assert: 
+             that:
+               - result.images | length == 2
+        -  name: Create First App container
+           docker_container:
+             name: App1
+             image: nodeapp
+             recreate: yes
+             ports:
+              - "3001:3000"
+        -  name: Create Second App container
+           docker_container:
+             name: na1
+             image: nodeapp
+             recreate: yes 
+             ports:
+              - "3002:3000"
+        -  name: Create Third App container
+           docker_container:
+             name: na2
+             image: nodeapp
+             recreate: yes
+             ports:
+              - "3003:3000"
+        -  name: Build the Load Balancer image
+           docker_image:
+             path: ./my
+             name: mynginx
+        -  name: Start the Load Balancer container
+           docker_container:
+             name: lb
+             image: mynginx
+             state: started
+             recreate: yes
+             ports:
+              - "3000:80"
