@@ -24,5 +24,5 @@ Create a public Github repository and push your solution in it. Commit often - w
  ## Running this web application	
  This is a NodeJS application:	This is a NodeJS application:
 
-- `npm test` runs the application tests	- `npm test` runs the application tests
+- `npm test` runs the application tests	
 - `npm start` starts the http server
