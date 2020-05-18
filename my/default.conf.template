@@ -1,5 +1,5 @@
 upstream nodeserver {
- server ${IP}:3001 weight=2;
+ server ${IP}:3001 weight=1;
  server ${IP}:3002;
  server ${IP}:3003 backup;
 }
