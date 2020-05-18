@@ -1,5 +1,7 @@
 ---
     - hosts: local
+      environment:
+        PYTHONPATH: "/usr/local/lib/python2.7/dist-packages/"
       tasks:
         -  name: Build the Node App image
            docker_image:
