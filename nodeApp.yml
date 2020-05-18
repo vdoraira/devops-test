@@ -1,0 +1,7 @@
+---
+    - hosts: local
+      tasks:
+        -  name: Build the Node App image
+           docker_image:
+              path: ./
+              name: nodeapp
